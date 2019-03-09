@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -32,8 +33,8 @@ public class ApplyImm extends AppCompatActivity {
         setContentView(R.layout.activity_apply_imm);
         bt = findViewById(R.id.button);
         editText1 = findViewById(R.id.editText4);
-        editText2 = findViewById(R.id.editText5);
-        editText3 = findViewById(R.id.editText6);
+        editText2 = findViewById(R.id.editText11);
+        editText3 = findViewById(R.id.editText12);
         editText4 = findViewById(R.id.editText7);
         editText5 = findViewById(R.id.editText8);
         editText6 = findViewById(R.id.editText9);
@@ -61,6 +62,18 @@ public class ApplyImm extends AppCompatActivity {
                         .url(applyImm)
                         .post(requestBody)
                         .build();
+                try {
+                    Response response = okHttpClient.newCall(request).execute();
+                    String responseData = response.body().string();
+                    Log.d("MainActivity",responseData);
+                    if (responseData=="1"){
+                        Toast.makeText(ApplyImm.this,"申请成功",Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(ApplyImm.this,"申请失败",Toast.LENGTH_LONG).show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 try {
                     Response response = okHttpClient.newCall(request).execute();
                     String responseData = response.body().string();

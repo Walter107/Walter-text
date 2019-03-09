@@ -140,7 +140,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:orientation="horizontal"></LinearLayout>
+                        android:orientation="horizontal">
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="查询当前可预约时间段"
+                            android:id="@+id/bt_st"/>
+                    </LinearLayout>
 
                 </TableRow>
 
