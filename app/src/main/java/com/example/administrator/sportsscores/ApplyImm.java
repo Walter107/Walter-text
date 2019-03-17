@@ -1,5 +1,6 @@
 package com.example.administrator.sportsscores;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.administrator.sportsscores.Activity_p.Activity.Student;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -24,7 +27,7 @@ import okhttp3.Response;
 import static com.example.administrator.sportsscores.Activity_p.URl.URL.applyImm;
 
 public class ApplyImm extends AppCompatActivity {
-
+//申请免测
     private Button bt;
     private EditText editText1,editText2,editText3,editText4,editText5,editText6;
     @Override
@@ -49,7 +52,7 @@ public class ApplyImm extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                OkHttpClient okHttpClient = new OkHttpClient();
+                OkHttpClient client = new OkHttpClient();
                 RequestBody requestBody = new FormBody.Builder()
                         .add("Snumber", String.valueOf(editText1.getText()))
                         .add("Greadname",String.valueOf(editText2.getText()))
@@ -63,68 +66,19 @@ public class ApplyImm extends AppCompatActivity {
                         .post(requestBody)
                         .build();
                 try {
-                    Response response = okHttpClient.newCall(request).execute();
+                    Response response = client.newCall(request).execute();
                     String responseData = response.body().string();
-                    Log.d("MainActivity",responseData);
                     if (responseData=="1"){
                         Toast.makeText(ApplyImm.this,"申请成功",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(ApplyImm.this, Student.class);
+                        startActivity(intent);
                     }else {
                         Toast.makeText(ApplyImm.this,"申请失败",Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                try {
-                    Response response = okHttpClient.newCall(request).execute();
-                    String responseData = response.body().string();
-                    parseXMLWithPull(responseData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
             }
-        });
-    }
-    private void parseXMLWithPull(String xmlData) {
-        try {
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            XmlPullParser xmlPullParser = factory.newPullParser();
-            xmlPullParser.setInput(new StringReader(xmlData));
-
-            int eventType = xmlPullParser.getEventType();
-            String id = "";
-            String name = "";
-            String version = "";
-
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-                String nodeName = xmlPullParser.getName();
-                switch (eventType) {
-                    case XmlPullParser.START_TAG:
-                        //开始解析某个节点
-                        if ("id".equals(nodeName)) {
-                            id = xmlPullParser.nextText();
-                        } else if ("name".equals(nodeName)) {
-                            name = xmlPullParser.nextText();
-                        } else if ("version".equals(nodeName)) {
-                            version = xmlPullParser.nextText();
-                        }
-                        break;
-                    case XmlPullParser.END_TAG:
-                        if("app".equals(nodeName)){
-                            Log.d("MainActivity","id is "+id);
-                            Log.d("MainActivity","name is "+name);
-                            Log.d("MainActivity","version is "+version);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                eventType = xmlPullParser.next();
-            }
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        }).start();
     }
 }

@@ -33,8 +33,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static com.example.administrator.sportsscores.Activity_p.URl.URL.StartToEndTime;
 import static com.example.administrator.sportsscores.Activity_p.URl.URL.queryNews;
-
+//学生登录界面
 public class Student extends AppCompatActivity {
     private LinearLayout layout1,layout2,layout3;
     private Button bt_st;
@@ -63,11 +64,11 @@ public class Student extends AppCompatActivity {
 
 
 
-
+//查询当前可预约时间段
         bt_st.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                okhttp_1("https://result.eolinker.com/u8a8Qjf1df6a5f1087457c3975507c1f09f0cf90e08762e?uri=http://localhost:8080/SportsSystem/StartToEndTime.htm");
+                okhttp_1(StartToEndTime);
                 AlertDialog.Builder builder = new AlertDialog.Builder(Student.this);
                 builder.setIcon(R.drawable.ic_launcher_background);
                 builder.setTitle("当前可预约时间为");
@@ -83,15 +84,14 @@ public class Student extends AppCompatActivity {
 
 
 
-
+//网上获取公告内容
         new Thread()
         {
             @Override
             public void run() {
                 super.run();
-                    String pathString ="https://result.eolinker.com/u8a8Qjf1df6a5f1087457c3975507c1f09f0cf90e08762e?uri=http://localhost:8080/SportsSystem/queryNews.htm";
                 try {
-                    URL url = new URL(pathString);
+                    URL url = new URL(queryNews);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("POST");
                     connection.setDoInput(true);
@@ -152,6 +152,7 @@ public class Student extends AppCompatActivity {
 
 
     }
+    //okhttp
     private void okhttp_1(final String pathSt){
         new Thread()
         {
