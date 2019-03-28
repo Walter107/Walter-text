@@ -19,7 +19,6 @@ import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import static com.example.administrator.sportsscores.Activity_p.URl.URL.Register;
 //学生注册
 public class Registered extends AppCompatActivity {
     private Button button;
@@ -60,7 +59,7 @@ public class Registered extends AppCompatActivity {
                     @Override
                     public void run() {
                         super.run();
-                        String pathString =Register;
+                        String pathString ="";
                         try {
                             URL url = new URL(pathString);
                             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

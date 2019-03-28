@@ -24,7 +24,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.example.administrator.sportsscores.Activity_p.URl.URL.applyImm;
 
 public class ApplyImm extends AppCompatActivity {
 //申请免测
@@ -62,7 +61,7 @@ public class ApplyImm extends AppCompatActivity {
                         .add("Reason",String.valueOf(editText6.getText()))
                         .build();
                 Request request = new Request.Builder()
-                        .url(applyImm)
+                        .url("")
                         .post(requestBody)
                         .build();
                 try {

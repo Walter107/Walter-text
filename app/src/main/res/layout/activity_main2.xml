@@ -120,4 +120,17 @@
         android:text="注册账号"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#009688"
+        android:id="@+id/toolbar_Main2Activity"
+        tools:ignore="MissingConstraints"
+        android:titleTextColor="#FFFFFF"
+        android:tooltipText="登录">
+
+    </Toolbar>
+
+
 </android.support.constraint.ConstraintLayout>

@@ -19,7 +19,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static com.example.administrator.sportsscores.Activity_p.URl.URL.choseTime;
 
 public class ChooseTime_st extends AppCompatActivity {
     private EditText sName,sCode,sClass,stime,classTime,location;;
@@ -59,7 +58,7 @@ public class ChooseTime_st extends AppCompatActivity {
                     @Override
                     public void run() {
                         super.run();
-                        String pathString =choseTime;
+                        String pathString ="http://localhost:8080/SportsSystem/welcome.htm";
                         try {
                             URL url = new URL(pathString);
                             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

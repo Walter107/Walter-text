@@ -33,8 +33,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.example.administrator.sportsscores.Activity_p.URl.URL.StartToEndTime;
-import static com.example.administrator.sportsscores.Activity_p.URl.URL.queryNews;
 //学生登录界面
 public class Student extends AppCompatActivity {
     private LinearLayout layout1,layout2,layout3;
@@ -68,7 +66,7 @@ public class Student extends AppCompatActivity {
         bt_st.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                okhttp_1(StartToEndTime);
+                okhttp_1("http://localhost:8080/SportsSystem/welcome.htm\n");
                 AlertDialog.Builder builder = new AlertDialog.Builder(Student.this);
                 builder.setIcon(R.drawable.ic_launcher_background);
                 builder.setTitle("当前可预约时间为");
@@ -91,7 +89,7 @@ public class Student extends AppCompatActivity {
             public void run() {
                 super.run();
                 try {
-                    URL url = new URL(queryNews);
+                    URL url = new URL("http://localhost:8080/SportsSystem/welcome.htm");
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("POST");
                     connection.setDoInput(true);
