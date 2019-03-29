@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 import com.example.administrator.sportsscores.Activity_p.Activity.DivisionManager;
 import com.example.administrator.sportsscores.Activity_p.Activity.Student;
@@ -30,28 +31,8 @@ public class Main2Activity extends AppCompatActivity {
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            switch (result){
-                case "1":
-                    Intent intent1 = new Intent(Main2Activity.this, SuperAdministrator.class);
-                    startActivity(intent1);
-                    break;
-                case "2":
-                    Intent intent2 = new Intent(Main2Activity.this, Teacher.class);
-                    startActivity(intent2);
-                    break;
-                case "3":
-                    Intent intent3 = new Intent(Main2Activity.this, DivisionManager.class);
-                    startActivity(intent3);
-                    break;
-                case "4":
-                    Intent intent4 = new Intent(Main2Activity.this, Student.class);
-                    startActivity(intent4);
-                    break;
-                case "-1":
-//                        Toast.makeText(Main2Activity.this,"",Toast.LENGTH_LONG).show();
-                    //AS在子线程中不可进行ui操作，所以Toast应该放到Hander线程里面
-                    break;
-                default:break;
+            if(msg.what==0101){
+                Toast.makeText(Main2Activity.this,"你好",Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -134,6 +115,7 @@ public class Main2Activity extends AppCompatActivity {
                     case "-1":
                         Intent intent5 = new Intent(Main2Activity.this, Student.class);
                         startActivity(intent5);
+                        handler.sendEmptyMessage(0101);
 //                        Toast.makeText(Main2Activity.this,"",Toast.LENGTH_LONG).show();
                         //AS在子线程中不可进行ui操作，所以Toast应该放到Hander线程里面
                         break;
